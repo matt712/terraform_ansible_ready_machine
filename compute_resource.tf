@@ -3,17 +3,17 @@ resource "google_compute_address" "static" {
 	name="ipv4-address"
 }
 resource "google_compute_instance" "ansibleready"{
-	name = "ansibleready"
-	machine_type = "n1-standard-1"
-	zone = "europe-west2-c"
-	tags = ["ansible"]
+	name = "${var.name}"
+	machine_type = "${var.machine_type}"
+	zone = "${var.zone}"
+	tags = ["${var.name}"]
 	boot_disk {
 		initialize_params {
-			image = "centos-7-v20190423"
+			image = "${var.image}"
 		}
 	}
 	network_interface {
-		network = "default"
+		network = "${var.network}"
 		access_config {
 			nat_ip = "${google_compute_address.static.address}"
 		}

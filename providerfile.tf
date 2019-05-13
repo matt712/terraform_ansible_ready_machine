@@ -1,6 +1,6 @@
 
 provider "google" {
   credentials = "${file("./key.json")}"
-  project = "caramel-base-233209"
+  project = "${var.project}"
   region = "europe-west2"
 }
